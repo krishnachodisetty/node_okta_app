@@ -43,10 +43,12 @@ app.use('/scim/v2', require('./controllers'));
 
 //Get Methods
 app.get('/', auth.protected, function(req, res) {
+    console.log('-----/------');
     res.sendFile(`${__dirname}/index.html`);
 });
 
 app.get('/home', auth.protected, function(req, res) {
+    console.log('-----/home------');
     res.sendFile(`${__dirname}/index.html`);
 });
 
@@ -55,6 +57,7 @@ app.get('/login', auth.authenticate('saml', {
     failureRedirect: '/',
     failureFlash: true
 }), function(req, res) {
+    console.log('-----/login get------');
     res.redirect('/');
 });
 
@@ -63,6 +66,7 @@ app.post('/login', auth.authenticate('saml', {
     failureRedirect: '/',
     failureFlash: true
 }), function(req, res) {
+    console.log('-----/login post------');
     res.redirect('/home');
 });
 
